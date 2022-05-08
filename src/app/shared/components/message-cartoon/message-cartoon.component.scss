@@ -1,0 +1,13 @@
+ion-card{
+    --ion-background-color: white;
+
+    ion-label, ion-input{
+        color: gray;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    ion-card-content{
+        font-size: large;
+    }
+}
