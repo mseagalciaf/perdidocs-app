@@ -2,7 +2,14 @@
     padding: 8px;
 }
 
-#button-register{
-    margin-top: 3%;
-    padding: 0% 20%;
+.col-buttons{
+    margin: 4% auto;
+}
+
+.span-spinner{
+    padding: 5%;
+
+    ion-spinner{
+        color: white
+    }
 }

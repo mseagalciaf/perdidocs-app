@@ -9,6 +9,7 @@ import { SearchDocumentPageRoutingModule } from './search-document-routing.modul
 import { SearchDocumentPage } from './search-document.page';
 import { MessageCartoonComponent } from '../shared/components/message-cartoon/message-cartoon.component';
 import { CartoonImgPageComponent } from '../shared/components/cartoon-img-page/cartoon-img-page.component';
+import { ConfirmationMessageComponent } from './confirmation-message/confirmation-message.component';
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { CartoonImgPageComponent } from '../shared/components/cartoon-img-page/c
     SearchDocumentPage,
     MessageCartoonComponent,
     CartoonImgPageComponent,
+    ConfirmationMessageComponent,
   ]
 })
 export class SearchDocumentPageModule {}

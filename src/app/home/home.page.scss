@@ -30,7 +30,13 @@ ion-row{
 
 
 #container {
+  position: relative;
   text-align: center;
+  height: 60%;
+  display: flex!important;
+  align-content: center!important;
+  align-items: center!important;
+
 }
 
 @media screen and (min-height: 800px) {

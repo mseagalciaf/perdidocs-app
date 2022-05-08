@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConfirmationMessageComponent implements OnInit {
 
-  
+  messageCartoon : string = "Lo siento, tu documento no ha sido registrado en mi base de datos. ¿Deseas que te notifique cuando registren tu documento en mi base de datos?"
   constructor() { }
 
   ngOnInit() {}

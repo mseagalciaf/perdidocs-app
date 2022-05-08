@@ -2,7 +2,10 @@
   <ion-col size="12" size-md="10">
     <ion-card>
       <ion-card-content>
-        {{ message }} 
+        <p>{{ message }} </p>
+        <ul>
+          <li *ngFor="let error of errors" class="p-errors">{{ error }}</li>
+        </ul>
       </ion-card-content>
     </ion-card>
   </ion-col>

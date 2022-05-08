@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class MessageCartoonComponent implements OnInit {
 
   @Input("Message") message : string = '';
+  @Input("Errors") errors : string[] = [];
   constructor() { }
 
   ngOnInit() {}
