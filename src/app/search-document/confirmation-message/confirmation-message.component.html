@@ -4,7 +4,8 @@
     <app-message-cartoon [Message]="messageCartoon"></app-message-cartoon>
     <ion-row>
       <ion-col size="12" size-sm="6">
-        <ion-button id="button-close" expand="block" routerLink="/home">Notificarme</ion-button>
+        <ion-button *ngIf="success" id="button-close" expand="block" routerLink="/home">Llamar</ion-button>
+        <ion-button *ngIf="!success" id="button-close" expand="block" routerLink="/home">Notificarme</ion-button>
       </ion-col>
       <ion-col size="12" size-sm="6">
         <ion-button id="button-close" expand="block" routerLink="/home">Cerrar</ion-button>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Route, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -12,7 +12,7 @@ import { finalize } from 'rxjs/operators';
   templateUrl: './found-document.page.html',
   styleUrls: ['./found-document.page.scss'],
 })
-export class FoundDocumentPage implements OnInit {
+export class FoundDocumentPage implements OnInit,OnDestroy {
 
   isLoading : boolean = false;
   docTypes : DocTypeInterface[];
@@ -76,6 +76,11 @@ export class FoundDocumentPage implements OnInit {
         console.log(err);
       }
     })
+  }
+
+  ngOnDestroy(): void {
+    this.getDocTypesSubscription.unsubscribe();
+    if(this.createDocumentSubscription) this.createDocumentSubscription.unsubscribe();
   }
 
 }

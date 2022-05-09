@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-confirmation-message',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConfirmationMessageComponent implements OnInit {
 
+  success : boolean = false;
   messageCartoon : string = "Lo siento, tu documento no ha sido registrado en mi base de datos. ¿Deseas que te notifique cuando registren tu documento en mi base de datos?"
-  constructor() { }
+  constructor(
+    private _route: ActivatedRoute
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this._route.queryParams
+      .subscribe(params => {
+        if (params.phone) {
+          this.success = true;
+          this.messageCartoon = `¡Hey, Mira! La persona con el número de teléfono ${params.phone} encontró tu documento. Ponte en contacto para acordar la entrega.`;
+        }
+      }
+    );
+  }
 
 }
