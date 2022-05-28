@@ -1,0 +1,6 @@
+{
+	"appId": "com.jamedev.perdidocs",
+	"appName": "perdidocs",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

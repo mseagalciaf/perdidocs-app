@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "208985663789",
+    "firebase_url": "https://perdidocs-aca5b.firebaseio.com",
+    "project_id": "perdidocs-aca5b",
+    "storage_bucket": "perdidocs-aca5b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:208985663789:android:b8aa100d1281ce8e1c0ba4",
+        "android_client_info": {
+          "package_name": "com.jamedev.perdidocs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "208985663789-d8eca1hjrt4ig4brbgrbge1je7p3ilp4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBffisgO1VAOOtOalIE7rc-bM9sg_egO8c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "208985663789-d8eca1hjrt4ig4brbgrbge1je7p3ilp4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

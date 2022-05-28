@@ -46,6 +46,8 @@ export class SearchDocumentPage implements OnInit, OnDestroy {
        this.getDocTypesSubscription = this._documentService.searchDocument(this.docTypeId.value,this.numberDoc.value).pipe(
         finalize( () => {
           this.isLoading = false;
+          this.docTypeId.reset();
+          this.numberDoc.reset();
         })
       ).subscribe({
         next: (resp) => {
