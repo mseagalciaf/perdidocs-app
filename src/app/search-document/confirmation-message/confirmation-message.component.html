@@ -3,7 +3,7 @@
   <ion-grid>
     <app-message-cartoon [Message]="messageCartoon"></app-message-cartoon>
     <ion-row>
-      <ion-col size="12" size-sm="6">
+      <ion-col *ngIf="isDevice" size="12" size-sm="6">
         <ion-button *ngIf="success" id="button-close" expand="block" (click)="toCall()">Llamar</ion-button>
         <ion-button *ngIf="!success" id="button-close" expand="block" (click)="toAcceptNotification()">Notificarme</ion-button>
       </ion-col>

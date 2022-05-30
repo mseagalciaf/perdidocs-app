@@ -10,6 +10,7 @@ import { Platform } from '@ionic/angular';
 })
 export class ConfirmationMessageComponent implements OnInit {
 
+  isDevice : boolean;
   success : boolean = false;
   messageCartoon : string = "Lo siento, tu documento no ha sido registrado en mi base de datos. ¿Deseas que te notifique cuando registren tu documento en mi base de datos?";
   callNumber:string;
@@ -17,10 +18,13 @@ export class ConfirmationMessageComponent implements OnInit {
   docNumber : string;
 
   constructor(
+    private _platform : Platform,
     private _route: ActivatedRoute,
     private _callNumber: CallNumber,
     private _router : Router,
-  ) { }
+  ) { 
+    this.isDevice = this._platform.is('capacitor') ? true : false;
+  }
 
   ngOnInit() {
     this._route.queryParams

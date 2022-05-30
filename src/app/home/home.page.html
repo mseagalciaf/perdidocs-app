@@ -34,7 +34,7 @@
             </ion-card-content>
           </ion-card>
         </ion-col>
-        <ion-col size="12" size-sm="6" size-lg="4">
+        <ion-col *ngIf="isDevice" size="12" size-sm="6" size-lg="4">
           <ion-card routerLink="/account">
             <ion-card-content>
               <div>

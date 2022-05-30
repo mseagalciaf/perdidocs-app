@@ -6,6 +6,7 @@ import {
   PushNotifications,
   Token,
 } from '@capacitor/push-notifications';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -14,9 +15,14 @@ import {
 })
 export class HomePage implements OnInit {
 
+  isDevice : boolean;
+
   constructor(
+    private _platform : Platform,
     private _notificationsService : NotificationsService
-  ) {}
+  ) {
+    this.isDevice = this._platform.is('capacitor') ? true : false;
+  }
 
   ngOnInit(){
     // Request permission to use push notifications
