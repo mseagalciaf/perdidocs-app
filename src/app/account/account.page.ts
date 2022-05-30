@@ -1,18 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import {
-  ActionPerformed,
-  PushNotificationSchema,
-  PushNotifications,
-  Token,
-} from '@capacitor/push-notifications';
-import { ModalController } from '@ionic/angular';
 import { NotificationsService } from '../services/notifications.service';
-import { DocTypeInterface } from '../shared/interfaces/doc-type-interface';
 import { EnabledNotificationInterface } from '../shared/interfaces/enabled-notification-interface';
-import { DocumentService } from '../shared/services/document.service';
-import { AddNotificationModalComponent } from './add-notification-modal/add-notification-modal.component';
 
 @Component({
   selector: 'app-account',
@@ -22,16 +12,7 @@ import { AddNotificationModalComponent } from './add-notification-modal/add-noti
 export class AccountPage implements OnInit {
 
   myEnabledNotifications : EnabledNotificationInterface[];
-  registryToken : string = "e0vene_TXOPruuFYcfFnt:APA91bGYFITloVUWKxrI4qW6k2g31u6rUjtQwGtWpn0c_O4n4Hb5zlsn7mdITi4d1GUNXK_Lw-90RD3UKaQT2EIpPGWTDHT2zlViiy01Dygc4rJ_jiDpCYW1Rvv3WQ3993k1bt99PoEh";
-  /* docTypes : DocTypeInterface[];
-  enabledNotificationForm : FormGroup = this._formBuilder.group({
-    'registryToken' : ['',Validators.required],
-    'docTypeId' : ['',Validators.required],
-    'number' : ['',Validators.required,Validators.minLength(5)],
-    'viaEmail' : [false,Validators.required],
-    'viaPush' : [false,Validators.required]
-  }); */
-
+  registryToken : string = "";
 
   constructor(
     private readonly _notificationsService : NotificationsService,
@@ -40,51 +21,13 @@ export class AccountPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    // Request permission to use push notifications
-    // iOS will prompt user and return if they granted permission or not
-    // Android will just grant without prompting
-    PushNotifications.requestPermissions().then(result => {
-      if (result.receive === 'granted') {
-        // Register with Apple / Google to receive push via APNS/FCM
-        PushNotifications.register();
-      } else {
-        // Show some error
-      }
-    });
-
-    // On success, we should be able to receive notifications
-    PushNotifications.addListener('registration',
-      (token: Token) => {
-        this.registryToken = token.value;
-      }
-    );
-
-    // Some issue with our setup and push will not work
-    PushNotifications.addListener('registrationError',
-      (error: any) => {
-        alert('Error on registration: ' + JSON.stringify(error));
-      }
-    );
-
-    // Show us the notification payload if the app is open on our device
-    PushNotifications.addListener('pushNotificationReceived',
-      (notification: PushNotificationSchema) => {
-        alert('Push received: ' + JSON.stringify(notification));
-      }
-    );
-
-    // Method called when tapping on a notification
-    PushNotifications.addListener('pushNotificationActionPerformed',
-      (notification: ActionPerformed) => {
-        alert('Push action performed: ' + JSON.stringify(notification));
-      }
-    );
+    console.log(this._notificationsService.getGoogleRegistryToken());
 
     this.getMyEnabledNotifications();
     this._route.queryParams
       .subscribe(params => {
         if (params.docTypeId && params.docNumber) {
-          this.addEnabledNotification(this.registryToken,params.docTypeId,params.docNumber);        
+          this.addEnabledNotification(this._notificationsService.getGoogleRegistryToken(),params.docTypeId,params.docNumber);        
         }
       }
     );
@@ -92,8 +35,10 @@ export class AccountPage implements OnInit {
   }
 
   getMyEnabledNotifications(){
-    let myenabledNotificationSubscription = this._notificationsService.getMyEnabledNotifications(this.registryToken).subscribe({
+    let myenabledNotificationSubscription = this._notificationsService.getMyEnabledNotifications(this._notificationsService.getGoogleRegistryToken()).subscribe({
       next: (resp)=>{
+        console.log(resp);
+        
         this.myEnabledNotifications = resp;
       },
       error: (error)=>{

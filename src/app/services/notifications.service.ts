@@ -9,6 +9,7 @@ import { EnabledNotificationInterface } from '../shared/interfaces/enabled-notif
 })
 export class NotificationsService {
 
+  googleRegistryToken : string = '';
   httpHeaders : HttpHeaders = new HttpHeaders({
     'Accept' : 'application/json',
     'Content-Type' : 'application/json'
@@ -17,6 +18,14 @@ export class NotificationsService {
   constructor(
     private http : HttpClient
   ) {}
+
+  saveGoogleRegistryToken(token:string){
+    this.googleRegistryToken = token;
+  }
+
+  getGoogleRegistryToken():string{
+    return this.googleRegistryToken;
+  }
 
   getMyEnabledNotifications(registryToken : string): Observable<EnabledNotificationInterface[]>{
     return this.http.get<EnabledNotificationInterface[]>(`${environment.API_URL}enabled-notifications/${registryToken}`,{headers:this.httpHeaders});
