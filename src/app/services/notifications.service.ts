@@ -1,64 +1,36 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {
-  ActionPerformed,
-  PushNotificationSchema,
-  PushNotifications,
-  Token,
-} from '@capacitor/push-notifications';
-import { Platform } from '@ionic/angular';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { EnabledNotificationInterface } from '../shared/interfaces/enabled-notification-interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NotificationsService {
 
+  httpHeaders : HttpHeaders = new HttpHeaders({
+    'Accept' : 'application/json',
+    'Content-Type' : 'application/json'
+  })
+
   constructor(
-    private _platform : Platform
-  ) { 
-    this.initialize();
+    private http : HttpClient
+  ) {}
+
+  getMyEnabledNotifications(registryToken : string): Observable<EnabledNotificationInterface[]>{
+    return this.http.get<EnabledNotificationInterface[]>(`${environment.API_URL}enabled-notifications/${registryToken}`,{headers:this.httpHeaders});
   }
 
-  initialize(){
-    if (this._platform.is('capacitor')) {
-      PushNotifications.requestPermissions().then( result => {
-        console.log('Pushnotificaton Requested');
-        if (result.receive == 'granted') {
-          PushNotifications.register();
-          this.addListeners();
-        }
-      })
-    }else{
-      console.log('Platform: no es movil');
-    }
+  createNotification(data : EnabledNotificationInterface) : Observable<EnabledNotificationInterface>{
+    return this.http.post<EnabledNotificationInterface>(`${environment.API_URL}enabled-notifications`,data,{headers : this.httpHeaders});
   }
 
-  addListeners(){
-    // On success, we should be able to receive notifications
-    PushNotifications.addListener('registration',
-      (token: Token) => {
-        console.log('Push registration success, token: ' + token.value);
-      }
-    );
+  updateNotification(data : EnabledNotificationInterface){
+    return this.http.put<EnabledNotificationInterface>(`${environment.API_URL}enabled-notifications`,data,{headers : this.httpHeaders});
+  }
 
-    // Some issue with our setup and push will not work
-    PushNotifications.addListener('registrationError',
-      (error: any) => {
-        console.log('Error on registration: ' + JSON.stringify(error));
-      }
-    );
-
-    // Show us the notification payload if the app is open on our device
-    PushNotifications.addListener('pushNotificationReceived',
-      (notification: PushNotificationSchema) => {
-        console.log('Push received: ' + JSON.stringify(notification));
-      }
-    );
-
-    // Method called when tapping on a notification
-    PushNotifications.addListener('pushNotificationActionPerformed',
-      (notification: ActionPerformed) => {
-        console.log('Push action performed: ' + JSON.stringify(notification));
-      }
-    );
+  removeNotification(id:number){
+    return this.http.delete(`${environment.API_URL}enabled-notifications/${id}`,{headers:this.httpHeaders});
   }
 }

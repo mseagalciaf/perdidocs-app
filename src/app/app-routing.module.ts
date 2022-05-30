@@ -19,6 +19,10 @@ const routes: Routes = [
     path: 'search-document',
     loadChildren: () => import('./search-document/search-document.module').then( m => m.SearchDocumentPageModule)
   },
+  {
+    path: 'account',
+    loadChildren: () => import('./account/account.module').then( m => m.AccountPageModule)
+  },
 ];
 
 @NgModule({

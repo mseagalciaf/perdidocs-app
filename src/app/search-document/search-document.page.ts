@@ -51,13 +51,20 @@ export class SearchDocumentPage implements OnInit, OnDestroy {
         })
       ).subscribe({
         next: (resp) => {
-          this._router.navigate(['/search-document/confirmation'],{queryParams : { phone : resp.phone }});
+          this._router.navigate(['/search-document/confirmation'],{
+            queryParams : { phone : resp.phone }
+          });
         },
         error: (err) => {
           console.log(err);
           
           if (err.status = 404) {
-            this._router.navigate(['/search-document/confirmation']);
+            this._router.navigate(['/search-document/confirmation'],{
+              queryParams : {
+                docTypeId : this.docTypeId.value,
+                docNumber : this.numberDoc.value
+              }
+            });
           }else{
             console.log(err);   
           }

@@ -1,0 +1,25 @@
+.title-card{
+    color: var(--primary-color);
+    margin-top: 0%;
+}
+
+
+.div-toggle-push{
+    text-align: center;
+
+}
+
+.div-remove-notification{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .anchor-remove-notification {
+        color: var(--ion-background-color);
+        font-size: xx-large;
+    }
+}
+
+.col-buttons{
+    margin: auto;
+}
