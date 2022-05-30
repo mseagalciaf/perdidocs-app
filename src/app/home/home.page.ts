@@ -6,7 +6,7 @@ import {
   PushNotifications,
   Token,
 } from '@capacitor/push-notifications';
-import { Platform } from '@ionic/angular';
+import { AlertController, Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -19,7 +19,8 @@ export class HomePage implements OnInit {
 
   constructor(
     private _platform : Platform,
-    private _notificationsService : NotificationsService
+    private _notificationsService : NotificationsService,
+    public alertController: AlertController
   ) {
     this.isDevice = this._platform.is('capacitor') ? true : false;
   }
@@ -47,23 +48,34 @@ export class HomePage implements OnInit {
       // Some issue with our setup and push will not work
       PushNotifications.addListener('registrationError',
         (error: any) => {
-          alert('Error on registration: ' + JSON.stringify(error));
+          console.log('Error on registration: ' + JSON.stringify(error));
         }
       );
   
       // Show us the notification payload if the app is open on our device
       PushNotifications.addListener('pushNotificationReceived',
         (notification: PushNotificationSchema) => {
-          alert('Push received: ' + JSON.stringify(notification));
+          this.showAlert(notification.title,notification.body)
         }
       );
   
       // Method called when tapping on a notification
       PushNotifications.addListener('pushNotificationActionPerformed',
         (notification: ActionPerformed) => {
-          alert('Push action performed: ' + JSON.stringify(notification));
+          console.log('Push action performed: ' + JSON.stringify(notification));
         }
       );
+  }
+
+  async showAlert(header:string='',message:string=''){
+    const alert = await this.alertController.create({
+      cssClass: 'alert-document-found',
+      header,
+      message,
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 
 }
