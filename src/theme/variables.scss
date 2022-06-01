@@ -157,7 +157,7 @@
    * -------------------------------------------
    */
 
-  .ios body {
+  .ios body.dark {
     --ion-background-color: #000000;
     --ion-background-color-rgb: 0,0,0;
 
@@ -201,7 +201,7 @@
    * -------------------------------------------
    */
 
-  .md body {
+  .md body.dark {
     --ion-background-color: #121212;
     --ion-background-color-rgb: 18,18,18;
 
@@ -238,4 +238,70 @@
 
     --ion-card-background: #1e1e1e;
   }
+
+}
+
+.md body.purple {
+  --ion-background-color: #572364;
+  --ion-background-color-rgb: 87,35,100;
+
+  --ion-text-color: #572364;
+  --ion-text-color-rgb: 255,255,255;
+
+  --ion-border-color: #222222;
+
+  --ion-color-primary-contrast: #b259c9;
+  --ion-color-secondary: #b259c9;
+
+  /** success **/
+	--ion-color-success: #ffc409;
+	--ion-color-success-rgb: 255,196,9;
+	--ion-color-success-contrast: #fff;
+	--ion-color-success-contrast-rgb: 0,0,0;
+	--ion-color-success-shade: #e0ac08;
+	--ion-color-success-tint: #ffca22;
+
+}
+
+.md body.aqua {
+  --ion-background-color: #00a89d;
+  --ion-background-color-rgb: 0,168,157;
+
+  --ion-text-color: #00a89d;
+  --ion-text-color-rgb: 0,168,157;
+
+  --ion-border-color: #222222;
+
+  --ion-color-primary-contrast: #1ab1a7;
+  --ion-color-secondary: #1ab1a7;
+
+  /** success **/
+	--ion-color-success: #d9dd0e;
+	--ion-color-success-rgb: 217,221,14;
+	--ion-color-success-contrast: #fff;
+	--ion-color-success-contrast-rgb: 0,0,0;
+	--ion-color-success-shade: #bfc20c;
+	--ion-color-success-tint: #dde026;
+  --placeholder-color : green;
+}
+
+.md body.green {
+  --ion-background-color: #17a64e;
+  --ion-background-color-rgb: 23,166,78;
+
+  --ion-text-color: #17a64e;
+  --ion-text-color-rgb: 23,166,78;
+
+  --ion-border-color: #222222;
+
+  --ion-color-primary-contrast: #2eaf60;
+  --ion-color-secondary: #2eaf60;
+
+    /** success **/
+	--ion-color-success: #ffc409;
+	--ion-color-success-rgb: 255,196,9;
+	--ion-color-success-contrast: #fff;
+	--ion-color-success-contrast-rgb: 0,0,0;
+	--ion-color-success-shade: #e0ac08;
+	--ion-color-success-tint: #ffca22;
 }
