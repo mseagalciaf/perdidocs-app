@@ -69,9 +69,13 @@
 
     .alert-document-found{
         --background: white !important;
+        
+        .alert-head *{
+            color: var(--primary-color);
+        }
 
         button{
-            color: var(--ion-background-color);
+            color: var(--primary-color);
         }
       }
       
