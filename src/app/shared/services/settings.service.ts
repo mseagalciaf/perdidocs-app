@@ -10,7 +10,7 @@ export class SettingsService {
   constructor(
     private _storageService : StorageService
   ) {
-    this.checkDarkTheme();
+    this.checkCurrentTheme();
   }
 
   checkDarkTheme(){
@@ -33,6 +33,8 @@ export class SettingsService {
 
   async checkCurrentTheme(){
     this.currentTheme = await this._storageService.get('theme');
+    if(this.currentTheme) this.setTheme(this.currentTheme);
+    else this.checkDarkTheme();
   }
 
 }

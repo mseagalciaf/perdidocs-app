@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CallNumber } from '@awesome-cordova-plugins/call-number/ngx';
-import { IonicStorageModule } from '@ionic/storage-angular';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,7 +19,6 @@ import { IonicStorageModule } from '@ionic/storage-angular';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    IonicStorageModule.forRoot(),
   ],
   providers: [
     CallNumber,
