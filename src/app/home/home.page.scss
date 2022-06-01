@@ -35,6 +35,29 @@ ion-row{
   text-align: center;
 }
 
+ion-card{
+  height: 120px !important;
+  ion-card-content{
+    height: 120px;
+    
+    .div-icons{
+      width: 100px;
+      margin: auto;
+
+      .img-icon{
+        width: 100% !important;
+        object-fit: cover;
+      }
+    }
+
+    .card-divtitle{
+      height: 50%;
+    }
+
+  }
+}
+
+
 @media screen and (min-height: 800px) {
   #conatiner-title-app{
     margin: 20% 0%;
@@ -70,11 +93,4 @@ ion-row{
 
 @media screen and (max-width: 399px) {
 
-  ion-card{
-    height: 50%;
-  }
-
-  .card-divtitle{
-    // display: none;
-  }
 }

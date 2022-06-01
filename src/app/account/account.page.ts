@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { NotificationsService } from '../services/notifications.service';
 import { EnabledNotificationInterface } from '../shared/interfaces/enabled-notification-interface';
+import { SettingsService } from '../shared/services/settings.service';
 
 @Component({
   selector: 'app-account',
@@ -13,15 +14,18 @@ export class AccountPage implements OnInit {
 
   myEnabledNotifications : EnabledNotificationInterface[];
   registryToken : string = "";
-
+  themeControl : FormControl;
+  themes : string[] = ['light','dark','purple','green','aqua'];
   constructor(
     private readonly _notificationsService : NotificationsService,
     private _formBuilder : FormBuilder,
-    private _route : ActivatedRoute
-  ) { }
+    private _route : ActivatedRoute,
+    private _settingsService : SettingsService
+  ) { 
+    this.themeControl = new FormControl(this._settingsService.currentTheme);
+  }
 
   ngOnInit() {
-    console.log(this._notificationsService.getGoogleRegistryToken());
 
     this.getMyEnabledNotifications();
     this._route.queryParams
@@ -32,6 +36,11 @@ export class AccountPage implements OnInit {
       }
     );
 
+  }
+
+  changeTheme(event:any){
+    console.log(event.value.toLowerCase());
+    this._settingsService.setTheme(event.value.toLowerCase());
   }
 
   getMyEnabledNotifications(){

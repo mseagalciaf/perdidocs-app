@@ -1,26 +1,38 @@
 import { Injectable } from '@angular/core';
+import { StorageService } from './storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SettingsService {
 
-  darkMode : boolean = false;
-  constructor() {
+  currentTheme : string = 'light';
+  constructor(
+    private _storageService : StorageService
+  ) {
     this.checkDarkTheme();
   }
 
   checkDarkTheme(){
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
-    this.darkMode = prefersDark.matches;
   
-    if(this.darkMode) this.setTheme('dark');
+    if(prefersDark.matches) this.setTheme('dark');
   }
   
   setTheme(theme:string){
     let lastTheme = document.body.classList.item(0);
     if (lastTheme) document.body.classList.replace(lastTheme,theme)
     else document.body.classList.add(theme);
+    this.currentTheme = theme;
+    this._storageService.set('theme',this.currentTheme);
+  }
+  
+  getCurrentTheme(){
+    return this.currentTheme;
+  }
+
+  async checkCurrentTheme(){
+    this.currentTheme = await this._storageService.get('theme');
   }
 
 }
