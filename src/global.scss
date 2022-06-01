@@ -66,4 +66,13 @@
     .text-center{
         text-align: center;
     }
+
+    .alert-document-found{
+        --background: white !important;
+
+        button{
+            color: var(--ion-background-color);
+        }
+      }
+      
 }
