@@ -26,6 +26,7 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit(){
+    this.requestPerosnalDataManagement()
     // Request permission to use push notifications
       // iOS will prompt user and return if they granted permission or not
       // Android will just grant without prompting
@@ -76,6 +77,10 @@ export class HomePage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  requestPerosnalDataManagement(){
+    this.showAlert('Autorizacion tratamiento de datos personales','De conformidad con lo previsto en la ley 1581 de 2012 manifiesto que otorgo mi autorización para que Perdidocs pueda hacer uso de mis datos personales. Al continuar acepto los terminos y condiciones, de lo contrario por favor abstenerse de usar la aplicación.');
   }
 
 }
